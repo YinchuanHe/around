@@ -10,7 +10,6 @@ import (
 	"reflect"
 	"strconv"
 
-	"cloud.google.com/go/bigtable"
 	"cloud.google.com/go/storage"
 	jwtmiddleware "github.com/auth0/go-jwt-middleware"
 	"github.com/dgrijalva/jwt-go"
@@ -145,7 +144,7 @@ func handlerPost(w http.ResponseWriter, r *http.Request) {
 	saveToES(p, id)
 
 	//Save to Bigtable
-	saveToBigTable(p, id)
+	//saveToBigTable(p, id)
 }
 
 // context, file, bucket name, uuid
@@ -201,6 +200,7 @@ func saveToES(p *Post, id string) {
 	fmt.Printf("Post is saved to index: %s\n", p.Message)
 }
 
+/*
 func saveToBigTable(p *Post, id string) {
 	ctx := context.Background()
 	bt_client, err := bigtable.NewClient(ctx, PROJECT_ID, BT_INSTANCE)
@@ -223,6 +223,7 @@ func saveToBigTable(p *Post, id string) {
 	}
 	fmt.Printf("Post is saved to BigTable: %s\n", p.Message)
 }
+*/
 
 func handlerSearch(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Recieved one request for search")
